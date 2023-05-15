@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 
 
 def select_action(q_value, epsilon):
+    """
+        Given an array of Q-values and an epsilon, returns an action to take.
+        With probability (1-epsilon), returns the action with the highest Q-value.
+        Otherwise, returns a random action.
+    """
+
     # Generate a random number between 0 and 1
     rand_num = np.random.random()
 
@@ -23,6 +29,13 @@ def get_last(l):
 
 
 def run_bandit(q_star, epsilons, steps):
+    """
+        Runs the multi-epsilon greedy algorithm for the k-armed bandit problem.
+        Given the true Q-values for each action, a list of epsilons to try, and the number of steps to run,
+        returns a tuple containing lists of average rewards and percentage of times the optimal action was chosen
+        for each epsilon value.
+    """
+
     action_number = len(q_star)
     epsilon_count = len(epsilons)
 
@@ -64,6 +77,10 @@ def run_bandit(q_star, epsilons, steps):
 
 
 def average_bandit(epsilons, steps, times):
+    """
+        Runs the multi-epsilon greedy algorithm multiple times and plots the average rewards and percentage of times the optimal action was chosen.
+    """
+
     x_coords = np.arange(steps)
     average_rewards = [[0 for _ in range(steps)] for _ in range(len(epsilons))]
     percentage_best = [[0 for _ in range(steps)] for _ in range(len(epsilons))]
